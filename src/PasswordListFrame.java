@@ -9,6 +9,9 @@ public class PasswordListFrame extends JFrame {
 
     public PasswordListFrame(List<String> passwords) {
 
+        SQLIntegration pullingPasswords = new SQLIntegration();
+        pullingPasswords.readSQLpasswords();
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -37,7 +40,6 @@ public class PasswordListFrame extends JFrame {
     }
 
 }
-
 
 
     
