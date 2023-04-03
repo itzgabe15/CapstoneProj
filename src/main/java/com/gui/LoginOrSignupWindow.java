@@ -13,7 +13,7 @@ public class LoginOrSignupWindow extends JFrame{
         
         loginButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                // code to handle login button click
+                
             }
         });
         
