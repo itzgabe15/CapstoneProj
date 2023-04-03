@@ -3,7 +3,7 @@ package main.java.com.gui;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginForm extends JDialog {
+public class LoginWindow extends JDialog {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JButton loginButton;
