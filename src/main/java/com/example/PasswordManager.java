@@ -4,6 +4,12 @@ import main.java.com.gui.LoginOrSignupWindow;
 
 public class PasswordManager {
     public static void main(String[] args) {
-        LoginOrSignupWindow window = new LoginOrSignupWindow();
+        DatabaseConnection dbConnection = new DatabaseConnection();
+        dbConnection.connect();
+        AccountDAO accountDAO = new AccountDAO(dbConnection);
+        PasswordDAO passwordDAO = new PasswordDAO(dbConnection);
+
+        LoginOrSignupWindow window = new LoginOrSignupWindow(accountDAO, passwordDAO);
+
     }
 }

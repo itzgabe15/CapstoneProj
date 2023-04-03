@@ -21,6 +21,14 @@ public class DatabaseConnection {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        return connection.prepareStatement(sql);
+    }
+
     public ResultSet executeQuery(String query) {
         try {
             statement = connection.createStatement();

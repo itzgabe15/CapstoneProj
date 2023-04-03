@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public class AccountDAO {
 
-    private Connection connection;
+    private DatabaseConnection connection;
 
-    public AccountDAO(Connection connection) {
+    public AccountDAO(DatabaseConnection connection) {
         this.connection = connection;
     }
 
@@ -42,22 +42,12 @@ public class AccountDAO {
         }
     }
 
-    public void updateAccount(Account account) throws SQLException {
-        String sql = "UPDATE accountmanager SET username = ?, firstname = ?, lastname = ?, password = ? WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, account.getUsername());
-        statement.setString(2, account.getFirstName());
-        statement.setString(3, account.getLastName());
-        statement.setString(4, account.getPassword());
-        statement.setInt(5, account.getId());
-        statement.executeUpdate();
-    }
-
     public void deleteAccount(int accountId) throws SQLException {
         String sql = "DELETE FROM accountmanager WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, accountId);
         statement.executeUpdate();
     }
+
 }
 
