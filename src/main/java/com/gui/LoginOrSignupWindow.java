@@ -30,17 +30,14 @@ public class LoginOrSignupWindow extends JFrame{
 
         loginButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                // get the entered username and password
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
 
-                // check if the username and password are valid
                 try {
                     Account account = accountDAO.getAccount(username);
                     if (account != null && account.getPassword().equals(password)) {
                         JOptionPane.showMessageDialog(null, "Login successful");
 
-                        // Show the user options window
                         UserOptionsWindow userOptionsWindow = new UserOptionsWindow(passwordDAO, username);
                         userOptionsWindow.setVisible(true);
                         dispose();
@@ -55,11 +52,9 @@ public class LoginOrSignupWindow extends JFrame{
         
         signupButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                // Create a new signup window and make it visible
                 SignupWindow signupWindow = new SignupWindow(accountDAO);
                 signupWindow.setVisible(true);
                 
-                // Close the current window
                 dispose();
             }
         });

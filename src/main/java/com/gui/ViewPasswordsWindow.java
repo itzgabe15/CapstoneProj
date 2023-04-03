@@ -97,21 +97,16 @@ public class ViewPasswordsWindow extends JFrame {
                             model.removeRow(modelRowIndex);
                         } catch (SQLException ex) {
                             ex.printStackTrace();
-                            // Handle the exception appropriately
                         }
                     }
                 });
                 
-    
-                // Create a new array with the buttons as the last two elements
                 Object[] row = new Object[]{password.getWebsiteUrl(), password.getWebsiteName(),
                         password.getWebsiteUsername(), password.getWebsitePassword(), editButton, deleteButton};
     
-                // Add the row to the table model
                 model.addRow(row);
             }
     
-            // Set the button renderer and editor for the "Edit" and "Delete" columns
             TableColumn editColumn = table.getColumnModel().getColumn(4);
             editColumn.setCellRenderer(new JButtonRenderer());
             editColumn.setCellEditor(new JButtonEditor(new JCheckBox()));

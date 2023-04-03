@@ -29,27 +29,21 @@ public class SignupWindow extends JFrame {
 
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // get the entered username, password, and name
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
                 String firstName = firstNameField.getText();
                 String lastName = lastNameField.getText();
 
-                // create a new account with the entered information
                 Account account = new Account(username, firstName, lastName, password);
 
-                // check if the account already exists
                 try {
                     if (accountDAO.getAccount(username) != null) {
                         JOptionPane.showMessageDialog(null, "An account with that username already exists");
                     } else {
-                        // add the account to the database
                         accountDAO.addAccount(account);
                         JOptionPane.showMessageDialog(null, "Account created successfully");
-                        // Create a new signup window and make it visible
                         LoginOrSignupWindow signupWindow = new LoginOrSignupWindow(accountDAO, passwordDAO);
                 
-                        // Close the current window
                         dispose();
 
                         signupWindow.setVisible(true);

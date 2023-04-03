@@ -7,7 +7,6 @@ public class Password {
     private String websitePassword;
     private int id;
 
-    // Constructors
     public Password() {
     }
 
@@ -19,7 +18,6 @@ public class Password {
         this.websitePassword = websitePassword;
     }
 
-    // Getters and Setters
     public int getId() {
         return id;
     }

@@ -56,7 +56,7 @@ public class SavePasswordWindow extends JFrame {
                 try {
                     passwordDAO.addUserPassword(websiteUrl, websiteName, websiteUsername, websitePassword, username);
                     JOptionPane.showMessageDialog(null, "Password saved successfully");
-                    // Show the user options window
+
                     UserOptionsWindow userOptionsWindow = new UserOptionsWindow(passwordDAO, username);
                     userOptionsWindow.setVisible(true);
                     dispose();

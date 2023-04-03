@@ -38,8 +38,8 @@ public class EditPasswordWindow extends JFrame {
 
     private void initComponents() {
         JPanel panel = new JPanel(new BorderLayout());
-        JPanel fieldsPanel = new JPanel(new GridLayout(4, 2, 10, 10)); // GridLayout with 4 rows, 2 columns and 10px spacing
-        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10)); // FlowLayout to align the buttons to the right with spacing
+        JPanel fieldsPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
     
         websiteUrlField = new JTextField();
         websiteNameField = new JTextField();
@@ -93,7 +93,6 @@ public class EditPasswordWindow extends JFrame {
         buttonsPanel.add(saveButton);
         buttonsPanel.add(cancelButton);
     
-        // add padding to the fieldsPanel
         fieldsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     
         panel.add(fieldsPanel, BorderLayout.CENTER);
