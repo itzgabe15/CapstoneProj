@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import main.java.com.example.PasswordDAO;
+import main.java.com.app.PasswordDAO;
 
 public class SavePasswordWindow extends JFrame {
     private PasswordDAO passwordDAO;

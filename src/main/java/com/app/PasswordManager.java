@@ -1,4 +1,4 @@
-package main.java.com.example;
+package main.java.com.app;
 
 import main.java.com.gui.LoginOrSignupWindow;
 

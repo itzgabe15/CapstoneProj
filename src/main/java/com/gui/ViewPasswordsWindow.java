@@ -17,14 +17,15 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
+
+import main.java.com.app.Password;
+import main.java.com.app.PasswordDAO;
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
 
 
 import javax.swing.JLabel;
-
-import main.java.com.example.Password;
-import main.java.com.example.PasswordDAO;
 
 public class ViewPasswordsWindow extends JFrame {
     private PasswordDAO passwordDAO;

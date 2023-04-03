@@ -1,11 +1,12 @@
 package main.java.com.gui;
 
 import javax.swing.*;
+
+import main.java.com.app.PasswordDAO;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import main.java.com.example.PasswordDAO;
 
 
 public class UserOptionsWindow extends JFrame{

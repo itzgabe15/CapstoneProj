@@ -1,11 +1,13 @@
 package main.java.com.gui;
 
 import javax.swing.*;
+
+import main.java.com.app.Account;
+import main.java.com.app.AccountDAO;
+import main.java.com.app.PasswordDAO;
+
 import java.awt.event.*;
 import java.sql.SQLException;
-import main.java.com.example.Account;
-import main.java.com.example.AccountDAO;
-import main.java.com.example.PasswordDAO;
 
 
 public class LoginOrSignupWindow extends JFrame{

@@ -1,4 +1,4 @@
-package main.java.com.example;
+package main.java.com.app;
 
 public class Password {
     private String websiteUrl;
