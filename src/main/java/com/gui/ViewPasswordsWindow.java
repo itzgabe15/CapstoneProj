@@ -7,14 +7,12 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -92,15 +90,14 @@ public class ViewPasswordsWindow extends JFrame {
                 deleteButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         int row = table.getSelectedRow();
-                        if (row >= 0) {
-                            Password selectedPassword = passwords.get(row);
-                            try {
-                                passwordDAO.deleteUserPassword(selectedPassword.getId());
-                                model.removeRow(row);
-                            } catch (SQLException ex) {
-                                ex.printStackTrace();
-                                // Handle the exception appropriately
-                            }
+                        int modelRowIndex = table.convertRowIndexToModel(row);
+                        Password selectedPassword = passwords.get(modelRowIndex);
+                        try {
+                            passwordDAO.deleteUserPassword(selectedPassword.getId());
+                            model.removeRow(modelRowIndex);
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                            // Handle the exception appropriately
                         }
                     }
                 });

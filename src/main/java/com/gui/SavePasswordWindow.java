@@ -66,7 +66,17 @@ public class SavePasswordWindow extends JFrame {
             }
         });
 
+        JButton cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                UserOptionsWindow userOptionsWindow = new UserOptionsWindow(passwordDAO, username);
+                userOptionsWindow.setVisible(true);
+                dispose();
+            }
+        });
+
         panel.add(saveButton);
+        panel.add(cancelButton);
 
         add(panel);
         setTitle("Save Password");
