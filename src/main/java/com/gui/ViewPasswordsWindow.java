@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -12,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -21,7 +24,7 @@ import main.java.com.app.PasswordDAO;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
-
+import javax.swing.table.TableRowSorter;
 
 import javax.swing.JLabel;
 
@@ -56,10 +59,18 @@ public class ViewPasswordsWindow extends JFrame {
                 dispose();
             }
         }); 
+
+        JButton sortPasswordsButton = new JButton("Sort Passwords");
+        sortPasswordsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                sortPasswords();
+            }
+        });
         
         JPanel bottomPanel = new JPanel(new BorderLayout());
         bottomPanel.add(new JLabel(), BorderLayout.NORTH);
         bottomPanel.add(new JLabel(), BorderLayout.EAST);
+        bottomPanel.add(sortPasswordsButton, BorderLayout.CENTER); // Add the "Sort Passwords" button
         bottomPanel.add(backButton, BorderLayout.SOUTH);
 
         panel.add(new JScrollPane(table), BorderLayout.CENTER);
@@ -70,7 +81,20 @@ public class ViewPasswordsWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
+
+        
+
     }
+
+        private void sortPasswords() {
+            TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+            table.setRowSorter(sorter);
+            List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+            sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING)); // Sort by the "Website Name" column (index 1)
+            sorter.setSortKeys(sortKeys);
+            sorter.sort();
+        }
+        
 
     private void populateTable() throws SQLException{
         try {
