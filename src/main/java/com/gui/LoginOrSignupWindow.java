@@ -9,8 +9,7 @@ import main.java.com.app.PasswordDAO;
 import java.awt.event.*;
 import java.sql.SQLException;
 
-
-public class LoginOrSignupWindow extends JFrame{
+public class LoginOrSignupWindow extends JFrame {
     private JButton loginButton, signupButton;
     private JTextField usernameField;
     private JPasswordField passwordField;
@@ -18,7 +17,7 @@ public class LoginOrSignupWindow extends JFrame{
     private AccountDAO accountDAO;
     private PasswordDAO passwordDAO;
 
-    public LoginOrSignupWindow(AccountDAO accountDAO, PasswordDAO passwordDAO){
+    public LoginOrSignupWindow(AccountDAO accountDAO, PasswordDAO passwordDAO) {
         this.passwordDAO = passwordDAO;
         this.accountDAO = accountDAO;
 
@@ -28,8 +27,8 @@ public class LoginOrSignupWindow extends JFrame{
         usernameField = new JTextField(20);
         passwordField = new JPasswordField(20);
 
-        loginButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
 
@@ -49,16 +48,16 @@ public class LoginOrSignupWindow extends JFrame{
                 }
             }
         });
-        
-        signupButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        signupButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 SignupWindow signupWindow = new SignupWindow(accountDAO);
                 signupWindow.setVisible(true);
-                
+
                 dispose();
             }
         });
-        
+
         panel.add(new JLabel("Username: "));
         panel.add(usernameField);
         panel.add(new JLabel("Password: "));
@@ -66,7 +65,7 @@ public class LoginOrSignupWindow extends JFrame{
         panel.add(loginButton);
         panel.add(signupButton);
         add(panel);
-        
+
         setTitle("Login or Signup");
         setSize(350, 150);
         setLocationRelativeTo(null);
