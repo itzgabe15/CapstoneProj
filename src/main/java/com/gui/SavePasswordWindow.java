@@ -11,8 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import main.java.com.app.PasswordDAO;
+import main.java.com.app.PasswordEvaluator;
 
 public class SavePasswordWindow extends JFrame {
     private PasswordDAO passwordDAO;
@@ -25,7 +28,7 @@ public class SavePasswordWindow extends JFrame {
     }
 
     private void initComponents() {
-        JPanel panel = new JPanel(new GridLayout(5, 2));
+        JPanel panel = new JPanel(new GridLayout(6, 2));
 
         JLabel websiteUrlLabel = new JLabel("Website URL:");
         JTextField websiteUrlField = new JTextField();
@@ -35,6 +38,9 @@ public class SavePasswordWindow extends JFrame {
         JTextField websiteUsernameField = new JTextField();
         JLabel websitePasswordLabel = new JLabel("Website Password:");
         JTextField websitePasswordField = new JTextField();
+        JLabel passwordStrengthLabel = new JLabel("Password Strength:");
+        JTextField passwordStrengthField = new JTextField();
+        passwordStrengthField.setEditable(false);
 
         panel.add(websiteUrlLabel);
         panel.add(websiteUrlField);
@@ -44,6 +50,8 @@ public class SavePasswordWindow extends JFrame {
         panel.add(websiteUsernameField);
         panel.add(websitePasswordLabel);
         panel.add(websitePasswordField);
+        panel.add(passwordStrengthLabel);
+        panel.add(passwordStrengthField);
 
         JButton saveButton = new JButton("Save Password");
         saveButton.addActionListener(new ActionListener() {
@@ -84,5 +92,26 @@ public class SavePasswordWindow extends JFrame {
         pack();
         setSize(700, 600);
         setLocationRelativeTo(null);
+
+        // Update the password strength field when the password is changed
+        websitePasswordField.getDocument().addDocumentListener(new DocumentListener() {
+            private void updatePasswordStrength() {
+                String password = websitePasswordField.getText();
+                PasswordEvaluator.PasswordStrength strength = PasswordEvaluator.evaluatePasswordStrength(password);
+                passwordStrengthField.setText(strength.toString());
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+        });
     }
 }

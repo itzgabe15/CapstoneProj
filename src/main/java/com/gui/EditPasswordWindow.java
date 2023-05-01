@@ -15,9 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import main.java.com.app.Password;
 import main.java.com.app.PasswordDAO;
+import main.java.com.app.PasswordEvaluator;
 
 public class EditPasswordWindow extends JFrame {
     private PasswordDAO passwordDAO;
@@ -27,6 +30,9 @@ public class EditPasswordWindow extends JFrame {
     private JTextField websiteNameField;
     private JTextField websiteUsernameField;
     private JTextField websitePasswordField;
+    private JLabel passwordStrengthLabel;
+    private JTextField passwordStrengthField;
+
 
     public EditPasswordWindow(PasswordDAO passwordDAO, Password password, String username) {
         this.passwordDAO = passwordDAO;
@@ -38,13 +44,16 @@ public class EditPasswordWindow extends JFrame {
 
     private void initComponents() {
         JPanel panel = new JPanel(new BorderLayout());
-        JPanel fieldsPanel = new JPanel(new GridLayout(4, 2, 10, 10));
+        JPanel fieldsPanel = new JPanel(new GridLayout(5, 2, 10, 10));
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
     
         websiteUrlField = new JTextField();
         websiteNameField = new JTextField();
         websiteUsernameField = new JTextField();
         websitePasswordField = new JTextField();
+        passwordStrengthLabel = new JLabel();
+        passwordStrengthField = new JTextField();
+        passwordStrengthField.setEditable(false);
     
         fieldsPanel.add(new JLabel("Website URL:"));
         fieldsPanel.add(websiteUrlField);
@@ -57,6 +66,9 @@ public class EditPasswordWindow extends JFrame {
     
         fieldsPanel.add(new JLabel("Website Password:"));
         fieldsPanel.add(websitePasswordField);
+
+        fieldsPanel.add(new JLabel("Password Strength:"));
+        fieldsPanel.add(passwordStrengthField);
     
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(new ActionListener() {
@@ -103,6 +115,28 @@ public class EditPasswordWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
+
+        // Password Strength
+        // Update password strength field when the password is changed
+        websitePasswordField.getDocument().addDocumentListener(new DocumentListener() {
+            private void updatePasswordStrength() {
+                String password = websitePasswordField.getText();
+                PasswordEvaluator.PasswordStrength strength = PasswordEvaluator.evaluatePasswordStrength(password);
+                passwordStrengthField.setText(strength.toString());
+            }
+
+            public void insertUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                updatePasswordStrength();
+            }
+        });
     }
     
 
@@ -111,5 +145,7 @@ public class EditPasswordWindow extends JFrame {
         websiteNameField.setText(password.getWebsiteName());
         websiteUsernameField.setText(password.getWebsiteUsername());
         websitePasswordField.setText(password.getWebsitePassword());
+        PasswordEvaluator.PasswordStrength strength = PasswordEvaluator.evaluatePasswordStrength(password.getWebsitePassword());
+        passwordStrengthField.setText(strength.toString());
     }
 }
