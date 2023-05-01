@@ -66,7 +66,7 @@ public class SignupWindow extends JFrame {
         add(panel);
 
         setTitle("Sign Up");
-        setSize(300, 200);
+        setSize(300, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
