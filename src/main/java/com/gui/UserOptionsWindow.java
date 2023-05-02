@@ -5,6 +5,7 @@ import javax.swing.*;
 import main.java.com.app.AccountDAO;
 import main.java.com.app.DatabaseConnection;
 import main.java.com.app.PasswordDAO;
+import main.java.com.app.AccountSecretQuestionDAO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ public class UserOptionsWindow extends JFrame {
     private JButton savePasswordButton, viewPasswordsButton;
     private String username;
     private PasswordDAO passwordDAO;
+    private AccountSecretQuestionDAO accountSecretQuestionDAO;
 
     public UserOptionsWindow(PasswordDAO passwordDAO, String username) {
         this.passwordDAO = passwordDAO;
@@ -56,7 +58,7 @@ public class UserOptionsWindow extends JFrame {
                 DatabaseConnection dbConnection = new DatabaseConnection();
                 dbConnection.connect();
                 AccountDAO accountDAO = new AccountDAO(dbConnection);
-                LoginOrSignupWindow LoginOrSignupWindow = new LoginOrSignupWindow(accountDAO, passwordDAO);
+                LoginOrSignupWindow LoginOrSignupWindow = new LoginOrSignupWindow(accountDAO, passwordDAO, accountSecretQuestionDAO);
                 LoginOrSignupWindow.setVisible(true);
                 dispose();
             }

@@ -6,14 +6,17 @@ public class Account {
     private String firstName;
     private String lastName;
     private String password;
+    private String secretQuestion;
 
+    
     public Account() {}
 
-    public Account(String username, String firstName, String lastName, String password) {
+    public Account(String username, String firstName, String lastName, String password, String secretQuestion) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+        this.secretQuestion = secretQuestion;
     }
 
     public int getId() {
@@ -54,5 +57,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
     }
 }

@@ -8,8 +8,9 @@ public class Main {
         dbConnection.connect();
         AccountDAO accountDAO = new AccountDAO(dbConnection);
         PasswordDAO passwordDAO = new PasswordDAO(dbConnection);
+        AccountSecretQuestionDAO accountSecretQuestionDAO = new AccountSecretQuestionDAO(dbConnection);
 
-        LoginOrSignupWindow window = new LoginOrSignupWindow(accountDAO, passwordDAO);
+        LoginOrSignupWindow window = new LoginOrSignupWindow(accountDAO, passwordDAO, accountSecretQuestionDAO);
 
     }
 }
